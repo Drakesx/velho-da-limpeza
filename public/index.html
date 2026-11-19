@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#111a18">
+  <meta name="description" content="Um arcade pixel-art cooperativo. Limpe a cidade com o Velho da Limpeza!">
+  <title>Velho da Limpeza — Pixel Purge</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Velho da Limpeza início">
+        <span class="brand-icon">🧽</span>
+        <span><strong>VELHO DA LIMPEZA</strong><small>PIXEL PURGE // ARCADE CO-OP</small></span>
+      </a>
+      <div class="top-status"><span class="live-dot"></span><span id="connection-label">CONECTANDO</span><span class="build-tag">V1.0</span></div>
+    </header>
+
+    <section id="menu-screen" class="menu-screen">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>///</span> OPERAÇÃO: CIDADE LIMPA</div>
+        <h1>SUJEIRA?<br><em>HOJE NÃO.</em></h1>
+        <p>O Seu Osvaldo chegou. Pegue suas ferramentas, junte a equipe e deixe a cidade brilhando.</p>
+        <div class="hero-tags"><span>PIXEL ART</span><span>CO-OP ONLINE</span><span>PC + MOBILE</span></div>
+      </div>
+      <div class="menu-layout">
+        <div class="janitor-card">
+          <div class="card-label">FUNCIONÁRIO DO MÊS</div>
+          <canvas id="hero-sprite" width="176" height="176" aria-label="Pixel art do faxineiro Osvaldo"></canvas>
+          <div class="janitor-name">SEU OSVALDO <span>LV. 01</span></div>
+          <div class="janitor-caption">“Isso aqui tá uma imundície.”</div>
+          <div class="tool-chips"><span>🫧 ESPUMA</span><span>🧴 SABÃO</span><span>🌀 ASPIRADOR</span><span>🧹 ESFREGÃO</span></div>
+        </div>
+        <div class="menu-panel">
+          <label class="field-label" for="nickname">SEU APELIDO</label>
+          <input id="nickname" class="text-field" maxlength="16" value="Osvaldo" autocomplete="nickname" placeholder="Como vão te chamar?">
+          <div class="menu-actions">
+            <button id="solo-button" class="primary-button"><span>▶</span> JOGAR SOLO</button>
+            <button id="public-button" class="secondary-button"><span>◎</span> PARTIDA PÚBLICA</button>
+            <button id="create-button" class="secondary-button"><span>＋</span> CRIAR SALA PRIVADA</button>
+          </div>
+          <div class="join-row">
+            <input id="room-code" class="text-field code-field" maxlength="5" placeholder="CÓDIGO" aria-label="Código da sala">
+            <button id="join-button" class="join-button">ENTRAR <span>↗</span></button>
+          </div>
+          <div class="menu-foot"><span>ATÉ 4 JOGADORES</span><span>SEM CADASTRO</span><span>COOPERAÇÃO</span></div>
+        </div>
+      </div>
+      <div class="menu-bottom"><span>© 2026 OSVALDO CLEANING CORP.</span><span>FEITO PRA QUEM NÃO AGUENTA MAIS A SUJEIRA.</span></div>
+    </section>
+
+    <section id="game-screen" class="game-screen hidden">
+      <div class="game-topline">
+        <div class="hud-block score-block"><small>SUJEIRA REMOVIDA</small><strong id="team-score">0000</strong></div>
+        <div class="hud-center"><span class="room-pill"><i></i><span id="room-label">SALA</span></span><span id="elapsed-label">00:00</span></div>
+        <div class="hud-right"><div class="player-count"><span>👥</span><b id="player-count">1/4</b></div><button id="sound-button" class="icon-button" aria-label="Ativar ou desativar som">♪</button><button id="leave-button" class="leave-button">SAIR ↗</button></div>
+      </div>
+      <div class="arena-wrap">
+        <canvas id="game-canvas" width="960" height="540" aria-label="Área de jogo. Use WASD ou setas para se mover, mouse para mirar e espaço para limpar."></canvas>
+        <div id="toast" class="toast hidden"></div>
+        <div class="canvas-hint" id="canvas-hint">WASD / SETAS • MOUSE MIRA • ESPAÇO LIMPA • 1–4 TROCA FERRAMENTA</div>
+      </div>
+      <div class="game-bottom">
+        <div class="current-tool"><span id="tool-icon">🫧</span><div><small>FERRAMENTA EQUIPADA</small><strong id="tool-name">CANHÃO DE ESPUMA</strong></div><div class="tool-switch"><button id="tool-prev" aria-label="Ferramenta anterior">‹</button><span id="tool-number">1 / 4</span><button id="tool-next" aria-label="Próxima ferramenta">›</button></div></div>
+        <div class="party-list" id="party-list"></div>
+        <div class="health-panel"><small>ENERGIA DO OSVALDO</small><div class="health-track"><span id="health-fill"></span></div><b id="health-number">100%</b></div>
+      </div>
+      <div class="mobile-controls" id="mobile-controls">
+        <div class="joystick" id="joystick"><div class="joystick-ring"><div class="joystick-knob" id="joystick-knob"></div></div><small>MOVER</small></div>
+        <div class="mobile-actions"><button id="mobile-switch" class="mobile-switch">TROCAR<br>FERRAMENTA</button><button id="mobile-fire" class="mobile-fire"><span>✦</span><small>LIMPAR</small></button></div>
+      </div>
+    </section>
+
+    <footer class="global-footer"><span>🧽 LIMPEZA É COISA SÉRIA. O JOGO, NEM TANTO.</span><span id="server-state">AGUARDANDO CONEXÃO</span></footer>
+  </main>
+  <script type="module" src="/client.js"></script>
+</body>
+</html>
